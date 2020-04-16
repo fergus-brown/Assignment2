@@ -17,7 +17,7 @@ public class View implements Observer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         // Start of border layout code
-        
+        //testing
         // I've just put a single button in each of the border positions:
         // PAGE_START (i.e. top), PAGE_END (bottom), LINE_START (left) and
         // LINE_END (right). You can omit any of these, or replace the button
