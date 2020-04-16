@@ -1,6 +1,8 @@
 package clock;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.util.Observer;
 import java.util.Observable;
@@ -10,14 +12,22 @@ public class View implements Observer {
     ClockPanel panel;
     
     public View(Model model) {
-        JFrame frame = new JFrame();
+        final JFrame frame = new JFrame();
         panel = new ClockPanel(model);
         //frame.setContentPane(panel);
         frame.setTitle("Java Clock");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        JMenuBar menuBar = new JMenuBar();
+        
+        JMenu menu = new JMenu("Options");
+        
+        
+        JMenuItem menuItem = new JMenuItem("About");
+        menu.add(menuItem);
+        menuBar.add(menu);
         // Start of border layout code
-        //testing branch
+        
         // I've just put a single button in each of the border positions:
         // PAGE_START (i.e. top), PAGE_END (bottom), LINE_START (left) and
         // LINE_END (right). You can omit any of these, or replace the button
@@ -27,14 +37,11 @@ public class View implements Observer {
         // to help you get started.
         
         Container pane = frame.getContentPane();
-        
-        JButton button = new JButton("Button 1 (PAGE_START)");
-        pane.add(button, BorderLayout.PAGE_START);
-         
+                
         panel.setPreferredSize(new Dimension(200, 200));
         pane.add(panel, BorderLayout.CENTER);
          
-        button = new JButton("Button 3 (LINE_START)");
+        JButton button = new JButton("Button 3 (LINE_START)");
         pane.add(button, BorderLayout.LINE_START);
          
         button = new JButton("Long-Named Button 4 (PAGE_END)");
@@ -43,8 +50,15 @@ public class View implements Observer {
         button = new JButton("5 (LINE_END)");
         pane.add(button, BorderLayout.LINE_END);
         
+        pane.add(menuBar, BorderLayout.PAGE_START);
         // End of borderlayout code
         
+        menuItem.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){  
+                JOptionPane.showMessageDialog(frame, "Created by Fergus Brown, 17019711");  
+            }  
+        }); 
         frame.pack();
         frame.setVisible(true);
     }
